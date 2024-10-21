@@ -1,0 +1,76 @@
+
+.curatly-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.curately-modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(31, 32, 41, .75);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+
+.curately-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.curatly-modal-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 12px 25px 0 rgba(199, 175, 189, .25);
+  overflow: hidden;
+  padding-bottom: 20px;
+  transform: scale(0.6);
+  transition: transform 300ms ease;
+}
+
+.curately-modal.active .curatly-modal-wrap {
+  transform: scale(1);
+}
+
+.curatly-modal-wrap img {
+  width: 100%;
+  height: auto;
+}
+
+.curatly-modal-wrap p {
+  padding: 20px 30px 0 30px;
+}
+
+
+.curately-modal.active ~ .logo img {
+  filter: brightness(100%);
+}
+
+@media screen and (max-width: 500px) {
+  .curatly-modal-wrap {
+      width: calc(100% - 40px);
+      padding-bottom: 15px;
+  }
+
+  .curatly-modal-wrap p {
+      padding: 15px 20px 0 20px;
+  }
+}
+
+
+
+
