@@ -25,18 +25,11 @@
                 "file://*/*"
             ]
         }
-    ],
+    ],   
     "web_accessible_resources": [
         {
-            "resources": [
-                "searchList.html",
-                "alert.png",
-                "black_logo.png",
-                "fonts/SegoeUI.woff2"
-            ],
-            "matches": [
-                "https://www.linkedin.com/*"
-            ]
+            "resources": ["searchList.html","alert.png","black_logo.png"],
+            "matches": ["https://www.linkedin.com/*"]
         }
     ],
     "background": {

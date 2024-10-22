@@ -23,8 +23,6 @@ var isFromLinkedin = false;
 
 
 // var reactURL = 'https://localhost:3000/src/index.html';
-// http://localhost:3001/curatelychromeextensionlinkedin
-// https://resume.accuick.com/curatelychromeextensionlinkedindemo/
 var reactURL = 'https://resume.accuick.com/curatelychromeextensionlinkedindemo/';
 
 chrome.runtime.onMessage.addListener(
@@ -156,29 +154,15 @@ window.addEventListener('message', async function (event) {
     if (event?.data?.initialLoad) {
         sendDataFromExtensionToIframe({ passingDataFromCurately: true });
     }
-    // console.log(event.data, 'event?.data')
     if (event?.data?.dataFromIframeToCurately) {
         let isLogin = await chrome.storage.sync.get(['login']);
-        if (isLogin?.login) {
+        if(isLogin?.login){
             await chrome.storage.sync.remove('login');
-        } else {
+        }else{
             await chrome.storage.sync.set({ login: true });
         }
         sendDataFromExtensionToIframe({ passingDataFromCurately: true, json: tempJson, loadInitialData: true });
     }
-
-    if (event?.data?.isLoggedOut) {
-        await chrome.storage.sync.remove('login');
-    }
-
-    if (event?.data?.loggedinUserData) {
-        chrome.storage.local.set({ iframeData: event.data.loggedinUserData }, function () {
-            console.log('Data stored in Chrome extension storage');
-        });
-    }
-
-
-
     if (event?.data?.expandIframeWidth) {
         $('#accuickCuratelyChromeExtensionDiv').css("width", "330px !important");
     }
@@ -192,7 +176,7 @@ window.addEventListener('message', async function (event) {
         if ($('#accuickCuratelyChromeExtensionDiv').length) {
             // $('#accuickCuratelyChromeExtensionDiv').remove();
             $('#accuickCuratelyChromeExtensionDiv').css('display', 'none');
-            $('#searchlistPopupDivClass').css('display', 'none');
+            $('#searchListPopupDivClass').css('display', 'none');
             document.getElementById('accuickCuratelyChromeExtensionDiv').classList.add('minimizedDiv');
         }
     }
@@ -225,7 +209,7 @@ window.addEventListener('message', async function (event) {
             document.getElementById('accuickCuratelyChromeExtensionDiv').classList.add('minimizedDiv');
         }
     }
-    if (event?.data?.refreshVersion) {
+    if(event?.data?.refreshVersion){
         if ($('#accuickCuratelyChromeExtensionDiv').length) {
             $('#accuickCuratelyChromeExtensionDiv').remove();
         }
@@ -403,31 +387,31 @@ const stylesForCuratelyIFrame = `<style>
 </style>
 `;
 
-function split_profile_id(raw_id, get_part) {
-    return raw_id.split("urn:li:fsd_profile:")[get_part] != '' ? raw_id.split("urn:li:fsd_profile:")[get_part] : raw_id.split("urn:li:fsd_profile:")[get_part + 1];
+function split_profile_id(raw_id,get_part){
+    return raw_id.split("urn:li:fsd_profile:")[get_part]!=''?raw_id.split("urn:li:fsd_profile:")[get_part]:raw_id.split("urn:li:fsd_profile:")[get_part+1];
 }
 
-function start_scraping(id, message = null) {
-    let send_connect_request_details = {
-        linkedin_url: '',
-        profile_name: '',
-        job_title: '',
-        location: '',
-        send_message: '',
-        sent_by: ''
+function start_scraping(id,message=null){
+    let send_connect_request_details={
+        linkedin_url:'',
+        profile_name:'',
+        job_title:'',
+        location:'',
+        send_message:'',
+        sent_by:''
     }
 
-    send_connect_request_details.sent_by = document.querySelector('.global-nav__me-photo').getAttribute("alt");
-    send_connect_request_details.send_message = message;
+    send_connect_request_details.sent_by=document.querySelector('.global-nav__me-photo').getAttribute("alt");
+    send_connect_request_details.send_message=message;
     const elementsWithHref = document.querySelectorAll('a[href]');
-    for (let i = 0; i < elementsWithHref.length; i++) {
-        if (elementsWithHref[i].href.includes("_miniProfile%3A" + id)) {
+    for(let i=0;i<elementsWithHref.length;i++){
+        if(elementsWithHref[i].href.includes("_miniProfile%3A"+id)){
             let parent_element = elementsWithHref[i].parentElement.parentElement.parentElement;
-            if (parent_element) {
-                send_connect_request_details.location = elementsWithHref[i]?.parentElement?.parentElement?.parentElement?.querySelector(".entity-result__secondary-subtitle")?.textContent?.trim();
-                send_connect_request_details.profile_name = elementsWithHref[i]?.parentElement?.parentElement?.parentElement?.querySelector('.t-roman.t-sans [aria-hidden="true"]')?.textContent?.trim();
-                send_connect_request_details.job_title = elementsWithHref[i]?.parentElement?.parentElement?.parentElement?.querySelector(".entity-result__primary-subtitle")?.textContent?.trim();
-                send_connect_request_details.linkedin_url = elementsWithHref[i].href
+            if(parent_element){
+                send_connect_request_details.location=elementsWithHref[i]?.parentElement?.parentElement?.parentElement?.querySelector(".entity-result__secondary-subtitle")?.textContent?.trim();
+                send_connect_request_details.profile_name=elementsWithHref[i]?.parentElement?.parentElement?.parentElement?.querySelector('.t-roman.t-sans [aria-hidden="true"]')?.textContent?.trim();
+                send_connect_request_details.job_title=elementsWithHref[i]?.parentElement?.parentElement?.parentElement?.querySelector(".entity-result__primary-subtitle")?.textContent?.trim();
+                send_connect_request_details.linkedin_url=elementsWithHref[i].href
             }
             break;
         }

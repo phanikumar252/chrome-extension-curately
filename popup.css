@@ -1,4 +1,4 @@
-#searchlistPopupDivClass{
+#searchListPopupDivClass{
     position: fixed;
     top: 0px;
     right: 0px;
@@ -28,11 +28,11 @@
     border-left: 1px solid rgb(210, 214, 220) !important;
     border-image: initial !important;
 }
-#searchlistPopupDivClass iframe{
+#searchListPopupDivClass iframe{
     width: 100%;
     height: calc(100vh - 6px);
 }
-#searchlistPopupDivClass .spinner-border {
+#searchListPopupDivClass .spinner-border {
     height: 50px;
     width: 50px;
     z-index: 9999;
@@ -45,7 +45,7 @@
     -webkit-animation: spinner-border .75s linear infinite;
     animation: spinner-border .75s linear infinite;
 }
-#searchlistPopupDivClass .loader{
+#searchListPopupDivClass .loader{
     position: absolute;
     top: calc(50% - 25px);
     left: calc(50% - 25px);
