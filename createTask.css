@@ -1,5 +1,5 @@
 
-.curately-section {
+.curatly-section {
   position: relative;
   width: 100%;
   display: flex;
@@ -28,7 +28,7 @@
   pointer-events: auto;
 }
 
-.curately-modal-wrap {
+.curatly-modal-wrap {
   position: relative;
   width: 100%;
   max-width: 400px;
@@ -42,16 +42,16 @@
   transition: transform 300ms ease;
 }
 
-.curately-modal.active .curately-modal-wrap {
+.curately-modal.active .curatly-modal-wrap {
   transform: scale(1);
 }
 
-.curately-modal-wrap img {
+.curatly-modal-wrap img {
   width: 100%;
   height: auto;
 }
 
-.curately-modal-wrap p {
+.curatly-modal-wrap p {
   padding: 20px 30px 0 30px;
 }
 
@@ -61,12 +61,12 @@
 }
 
 @media screen and (max-width: 500px) {
-  .curately-modal-wrap {
+  .curatly-modal-wrap {
       width: calc(100% - 40px);
       padding-bottom: 15px;
   }
 
-  .curately-modal-wrap p {
+  .curatly-modal-wrap p {
       padding: 15px 20px 0 20px;
   }
 }
